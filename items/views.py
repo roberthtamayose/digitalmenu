@@ -7,3 +7,9 @@ def index(request):
     return render(request, 'item/index.html', {
         'items': items
     })
+
+def vw_item(request, item_id):
+    item = Item.objects.get(id=item_id)
+    return render(request, 'item/vw_item.html', {
+        'item': item
+    })

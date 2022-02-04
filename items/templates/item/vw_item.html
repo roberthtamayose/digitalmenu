@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{%block conteudo%}
+    <h1 class="mt-5">João Moreira</h1>
+      <dl>
+        <dt>ID</dt>
+        <dd>{{item.id}}</dd>
+
+        <dt>nome</dt>
+        <dd>{{item.nome}}</dd>
+
+        <dt>descricao</dt>
+        <dd>{{item.descricao}}</dd>
+
+        <dt>Categoria</dt>
+        <dd>{{item.categoria}}</dd>
+      </dl>
+{%endblock%}

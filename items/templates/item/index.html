@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {%block conteudo%}
-     <h1 class="mt-5">Minha agenda</h1>
+     <h1 class="mt-5">Menu</h1>
 
     <table class="table">
       <thead>
@@ -15,7 +15,7 @@
         {% for item in items %}
           <tr>
             <td>
-              <a href="#">{{ item.nome }}</a>
+              <a href="{% url 'vw_item' item.id %}">{{ item.nome }}</a>
             </td>
             <td>{{ item.descricao}}</td>
             <td>{{ item.categoria}}</td>
