@@ -14,6 +14,7 @@ class Item(models.Model):
     data_criacao = models.DateTimeField(default=timezone.now)
     descricao = models.TextField(blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    ocultar = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nome

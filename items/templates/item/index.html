@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{%block conteudo%}
+{% block conteudo %}
      <h1 class="mt-5">Menu</h1>
 
     <table class="table">
@@ -13,14 +13,32 @@
       </thead>
       <tbody>
         {% for item in items %}
-          <tr>
-            <td>
-              <a href="{% url 'vw_item' item.id %}">{{ item.nome }}</a>
-            </td>
-            <td>{{ item.descricao}}</td>
-            <td>{{ item.categoria}}</td>
-          </tr>
-        {%endfor%}
+          {% if item.ocultar == False %}
+            <tr>
+              <td>
+                <a href="{% url 'vw_item' item.id %}">{{ item.nome }}</a>
+              </td>
+              <td>{{ item.descricao}}</td>
+              <td>{{ item.categoria}}</td>
+            </tr>
+          {% endif%}
+        {% endfor %}
       </tbody>
     </table>
-{%endblock%}
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {% for pagina in items.paginator.page_range %}
+        {% if items.number == pagina %}
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+          </li>
+        {% else %}
+           <li class="page-item">
+            <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+           </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+{% endblock %}
