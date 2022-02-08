@@ -31,11 +31,11 @@
       {% for pagina in items.paginator.page_range %}
         {% if items.number == pagina %}
           <li class="page-item active">
-            <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+            <a class="page-link" href="?page={{ pagina }}&busca={{ request.GET.termo }}">{{pagina}}</a>
           </li>
         {% else %}
            <li class="page-item">
-            <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+            <a class="page-link" href="?page={{ pagina }}&busca={{ request.GET.termo }}">{{pagina}}</a>
            </li>
         {% endif %}
       {% endfor %}

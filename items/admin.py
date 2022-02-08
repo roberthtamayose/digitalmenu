@@ -4,9 +4,9 @@ from .models import Categoria, Item
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('nome', 'descricao', 'categoria', 'ocultar')
-    list_filter = ('nome', 'categoria')
+    list_filter = ('categoria','ocultar')
     list_editable = ('categoria', 'ocultar')
-    list_per_page = 10
+    list_per_page = 20
 
 
 admin.site.register(Categoria)
