@@ -15,6 +15,7 @@ class Item(models.Model):
     descricao = models.TextField(blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
     ocultar = models.BooleanField(default=False)
+    foto = models.ImageField(blank=True, upload_to='fotos/%y/%m/')
 
     def __str__(self):
         return self.nome

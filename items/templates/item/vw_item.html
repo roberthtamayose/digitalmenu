@@ -2,6 +2,11 @@
 
 {%block conteudo%}
     <h1 class="mt-5">João Moreira</h1>
+    {% if item.foto %}
+      <p>
+        <img src="{{ item.foto.url }}" style="max-width: 250px; height: auto;">
+      </p>
+    {% endif %}
       <dl>
         <dt>ID</dt>
         <dd>{{item.id}}</dd>
