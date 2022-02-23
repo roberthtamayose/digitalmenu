@@ -3,9 +3,16 @@ from django.contrib import messages, auth
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from items.models import Item
+
 
 # Create your views here.
 def login(request):
+
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
     if request.method != 'POST':
         return render(request, 'accounts/login.html')
 
@@ -26,7 +33,9 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('dashboard')
+    render(request, 'accounts/login.html')
+    return redirect('index_login')
+    # return render(request, 'accounts/login.html')
 
 
 def register(request):
@@ -62,4 +71,12 @@ def register(request):
 
 @login_required(redirect_field_name='')
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    messages.add_message(request, messages.ERROR, 'Ocorreu um erro.')
+    items = Item.objects.order_by('nome').filter(ocultar=False)
+    paginator = Paginator(items, 10)
+
+    page = request.GET.get('page')
+    items = paginator.get_page(page)
+    return render(request, 'accounts/dashboard.html', {
+        'items': items
+    })

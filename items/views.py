@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.contrib import messages
 
 def index(request):
-    messages.add_message(request, messages.ERROR, 'Ocorreu um erro.')
+    # messages.add_message(request, messages.ERROR, 'Ocorreu um erro.')
     items = Item.objects.order_by('nome').filter(ocultar=False)
     paginator = Paginator(items, 10)
 
